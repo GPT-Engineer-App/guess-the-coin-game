@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, VStack, HStack, Button, Text, Box, useToast, Image } from "@chakra-ui/react";
+import ThemeSwitcher from "../components/ThemeSwitcher";
 import { motion } from "framer-motion";
 import { FaCoins } from "react-icons/fa";
 
@@ -40,6 +41,7 @@ const Index = () => {
 
   return (
     <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, teal.500, green.500)">
+      <ThemeSwitcher />
       <VStack spacing={4}>
         <Text fontSize="3xl" fontWeight="bold" color="white">
           Guess Where the Coin is!
