@@ -18,25 +18,30 @@ const Index = () => {
   };
 
   const handleGuess = (index) => {
-    if (cups[index]) {
-      setMessage("Congratulations! You found the coin!");
-      toast({
-        title: "You won!",
-        description: "You found the coin under the cup!",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-    } else {
-      setMessage("Sorry, try again!");
-      toast({
-        title: "Try again!",
-        description: "The coin is not under this cup.",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
+    const cupElement = document.getElementById(`cup-${index}`);
+    cupElement.style.transform = "scaleY(0.5)";
+    setTimeout(() => {
+      if (cups[index]) {
+        setMessage("Congratulations! You found the coin!");
+        toast({
+          title: "You won!",
+          description: "You found the coin under the cup!",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+      } else {
+        setMessage("Sorry, try again!");
+        toast({
+          title: "Try again!",
+          description: "The coin is not under this cup.",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      }
+      cupElement.style.transform = "scaleY(1)";
+    }, 500);
   };
 
   const drawCup = (canvas) => {
@@ -67,7 +72,7 @@ const Index = () => {
         </Button>
         <HStack spacing={8}>
           {cups.map((hasCoin, index) => (
-            <motion.div key={index} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => handleGuess(index)}>
+            <motion.div id={`cup-${index}`} key={index} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => handleGuess(index)} style={{ transformOrigin: "bottom" }}>
               <canvas ref={(el) => drawCup(el)} width="150" height="150" />
               <Text mt={2} textAlign="center" color="white">
                 Cup {index + 1}
