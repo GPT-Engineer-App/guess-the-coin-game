@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Container, VStack, HStack, Button, Text, Box, useToast } from "@chakra-ui/react";
+import { Container, VStack, HStack, Button, Text, Box, useToast, Image } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { FaCoins } from "react-icons/fa";
 
 const Index = () => {
@@ -38,23 +39,29 @@ const Index = () => {
   };
 
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgGradient="linear(to-r, teal.500, green.500)">
       <VStack spacing={4}>
-        <Text fontSize="2xl">Guess Where the Coin is!</Text>
-        <Button onClick={shuffleCups} colorScheme="teal" size="lg">
+        <Text fontSize="3xl" fontWeight="bold" color="white">
+          Guess Where the Coin is!
+        </Text>
+        <Button onClick={shuffleCups} colorScheme="yellow" size="lg" boxShadow="lg">
           Shuffle Cups
         </Button>
         <HStack spacing={8}>
           {cups.map((hasCoin, index) => (
-            <Box key={index} textAlign="center">
-              <Button onClick={() => handleGuess(index)} colorScheme="blue" size="lg">
+            <Box key={index} textAlign="center" as={motion.div} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} boxShadow="xl" borderRadius="md" p={4} bg="white">
+              <Button onClick={() => handleGuess(index)} colorScheme="blue" size="lg" boxShadow="md" borderRadius="full">
                 <FaCoins />
               </Button>
               <Text mt={2}>Cup {index + 1}</Text>
             </Box>
           ))}
         </HStack>
-        {message && <Text fontSize="lg">{message}</Text>}
+        {message && (
+          <Text fontSize="lg" color="white">
+            {message}
+          </Text>
+        )}
       </VStack>
     </Container>
   );
