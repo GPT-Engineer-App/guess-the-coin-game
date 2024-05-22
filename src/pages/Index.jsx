@@ -51,7 +51,7 @@ const Index = () => {
         </Button>
         <HStack spacing={8}>
           {cups.map((hasCoin, index) => (
-            <Box key={index} textAlign="center" as={motion.div} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} boxShadow="xl" borderRadius="md" p={4} bg="white">
+            <Box key={index} textAlign="center" as={motion.div} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} boxShadow="xl" borderRadius="full" p={4} bgGradient="linear(to-b, gray.300, gray.500)" border="2px solid" borderColor="gray.600" height="150px" width="100px">
               <Button onClick={() => handleGuess(index)} colorScheme="blue" size="lg" boxShadow="md" borderRadius="full">
                 <FaCoins />
               </Button>
