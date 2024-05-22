@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, VStack, HStack, Button, Text, Box, useToast, Image } from "@chakra-ui/react";
+import { Container, VStack, HStack, Button, Text, useToast, Image } from "@chakra-ui/react";
 import ThemeSwitcher from "../components/ThemeSwitcher";
 import { motion } from "framer-motion";
 import { FaCoins } from "react-icons/fa";
@@ -51,12 +51,12 @@ const Index = () => {
         </Button>
         <HStack spacing={8}>
           {cups.map((hasCoin, index) => (
-            <Box key={index} textAlign="center" as={motion.div} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} boxShadow="xl" borderRadius="full" p={4} bgGradient="linear(to-b, gray.300, gray.500)" border="2px solid" borderColor="gray.600" height="150px" width="100px">
-              <Button onClick={() => handleGuess(index)} colorScheme="blue" size="lg" boxShadow="md" borderRadius="full">
-                <FaCoins />
-              </Button>
-              <Text mt={2}>Cup {index + 1}</Text>
-            </Box>
+            <motion.div key={index} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => handleGuess(index)}>
+              <Image src="/images/cup.png" alt={`Cup ${index + 1}`} boxSize="150px" />
+              <Text mt={2} textAlign="center" color="white">
+                Cup {index + 1}
+              </Text>
+            </motion.div>
           ))}
         </HStack>
         {message && (
